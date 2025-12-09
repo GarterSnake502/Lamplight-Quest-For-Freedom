@@ -1,0 +1,198 @@
+[gd_scene load_steps=11 format=3 uid="uid://dwxwsdtsy706u"]
+
+[ext_resource type="Script" uid="uid://c33ns772nwd6p" path="res://scripts/outro.gd" id="1_p7mu6"]
+[ext_resource type="Shader" uid="uid://cjcuccalsup1s" path="res://assets/intro.gdshader" id="2_jfgpy"]
+[ext_resource type="AudioStream" uid="uid://dm1b4e8oyjb5m" path="res://assets/ambientmain_0.ogg" id="3_jfgpy"]
+[ext_resource type="AudioStream" uid="uid://bk8g53jhy2al6" path="res://assets/Credits.mp3" id="3_p7mu6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_geirw"]
+shader = ExtResource("2_jfgpy")
+shader_parameter/speed = 0.1
+shader_parameter/pixelation = 8.0
+shader_parameter/zoom = 2.0
+shader_parameter/gradient_pixelation = 0.2
+shader_parameter/background_threshold = 0.0
+shader_parameter/color_low_threshold = 0.24
+shader_parameter/color_mid_threshold = 0.48
+shader_parameter/color_low = Color(0.01, 0.41, 0.51, 1)
+shader_parameter/color_mid = Color(0.5, 0.1, 0.3, 1)
+shader_parameter/color_high = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_b226h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("message:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg2:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_alxvg"]
+resource_name = "fade out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_duh1u"]
+resource_name = "message"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("message:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mecp6"]
+resource_name = "scroll out"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b226h"]
+_data = {
+&"RESET": SubResource("Animation_b226h"),
+&"fade out": SubResource("Animation_alxvg"),
+&"message": SubResource("Animation_duh1u"),
+&"scroll out": SubResource("Animation_mecp6")
+}
+
+[node name="Outro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p7mu6")
+
+[node name="bg" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_geirw")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 132.0
+offset_right = 986.0
+offset_bottom = 543.0
+color = Color(0.16470589, 0.16470589, 0.16470589, 0.60784316)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 212.0
+offset_top = 130.0
+offset_right = -206.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="message" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 198.0
+offset_top = 353.0
+offset_right = 991.0
+offset_bottom = 575.0
+theme_override_font_sizes/font_size = 32
+text = "Through your noble bravity, you have restored Earth's natural order. Congrats!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="pressSpace" type="Label" parent="."]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 490.0
+offset_right = 983.0
+offset_bottom = 712.0
+theme_override_font_sizes/font_size = 32
+text = "[ Press SPACE to play again ]"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_b226h")
+}
+
+[node name="music_loss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jfgpy")
+
+[node name="music_victory" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_p7mu6")
+
+[node name="bg2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)

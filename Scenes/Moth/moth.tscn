@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://cyrfb2v7boesp"]
+
+[ext_resource type="Script" uid="uid://iydky0s4qeb1" path="res://scripts/Moth/moth.gd" id="1_5usn8"]
+[ext_resource type="Texture2D" uid="uid://dhdaki1oosykv" path="res://assets/moth.png" id="1_eidbc"]
+[ext_resource type="AudioStream" uid="uid://du3hampr5uw4r" path="res://assets/moth_follow.wav" id="3_2ackq"]
+[ext_resource type="AudioStream" uid="uid://bd0u65x2hdwts" path="res://assets/moth_tempted.wav" id="4_86y7x"]
+[ext_resource type="AudioStream" uid="uid://bf4g3qec3ms7n" path="res://assets/moth_death.wav" id="5_lgg1b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eidbc"]
+radius = 19.416489
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5usn8"]
+radius = 25.179358
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lgg1b"]
+light_mode = 1
+
+[node name="Moth" type="CharacterBody2D" groups=["Moth"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_5usn8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.195, 0.195)
+texture = ExtResource("1_eidbc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eidbc")
+
+[node name="lampDetect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lampDetect"]
+shape = SubResource("CircleShape2D_5usn8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="moth_follow" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2ackq")
+
+[node name="moth_tempted" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_86y7x")
+
+[node name="moth_died" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_lgg1b")
+
+[node name="follow_particle" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 0.74
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.88
+initial_velocity_max = 70.73
+scale_amount_min = 8.46
+scale_amount_max = 8.46
+color = Color(0.1393883, 0.73028004, 3.85046e-07, 1)
+
+[node name="tempted_particle" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 0.74
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.88
+initial_velocity_max = 70.73
+scale_amount_min = 8.46
+scale_amount_max = 8.46
+color = Color(0, 0.6526506, 0.91088927, 1)
+
+[node name="death_particle" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_lgg1b")
+emitting = false
+one_shot = true
+explosiveness = 0.74
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.88
+initial_velocity_max = 70.73
+scale_amount_min = 8.46
+scale_amount_max = 8.46
+color = Color(1, 0.34676895, 0.32805103, 1)
+
+[connection signal="body_entered" from="lampDetect" to="." method="_on_lamp_detect_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

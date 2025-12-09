@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://uukq5geroigx"]
+
+[ext_resource type="FontFile" uid="uid://d38ottwcwx3p5" path="res://assets/LiberationSerif-Bold.ttf" id="1_8x4f8"]
+
+[resource]
+font = ExtResource("1_8x4f8")
+font_size = 140
+font_color = Color(1, 0.75, 0, 1)
+outline_size = 30
+outline_color = Color(0.28, 0.144667, 0, 1)

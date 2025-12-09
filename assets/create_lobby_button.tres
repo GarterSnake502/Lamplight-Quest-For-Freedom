@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://beofj1nsuo73g"]
+
+[ext_resource type="StyleBox" uid="uid://ng4ive7s0e0" path="res://assets/create_lobby_disabled_style_box_flat.tres" id="1_2k1ks"]
+[ext_resource type="StyleBox" uid="uid://nd4vuoad6xsg" path="res://assets/create_lobby_style_box_flat.tres" id="1_8ewyb"]
+[ext_resource type="FontFile" uid="uid://d38ottwcwx3p5" path="res://assets/LiberationSerif-Bold.ttf" id="1_btfs6"]
+[ext_resource type="StyleBox" uid="uid://pku2xf38y0ot" path="res://assets/create_lobby_hover_style_box_flat.tres" id="1_irutf"]
+
+[resource]
+Button/colors/font_color = Color(0, 0.23, 0.0306667, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0.231373, 0.0313726, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0.231373, 0.0313726, 1)
+Button/colors/font_pressed_color = Color(0, 0.231373, 0.0313726, 1)
+Button/font_sizes/font_size = 70
+Button/fonts/font = ExtResource("1_btfs6")
+Button/styles/disabled = ExtResource("1_2k1ks")
+Button/styles/hover = ExtResource("1_irutf")
+Button/styles/hover_pressed = ExtResource("1_irutf")
+Button/styles/normal = ExtResource("1_8ewyb")
+Button/styles/pressed = ExtResource("1_irutf")

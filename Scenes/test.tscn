@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://l1n7jjeqh8y4"]
+
+[ext_resource type="PackedScene" uid="uid://dke3qtjvucvep" path="res://Scenes/Player/player.tscn" id="1_lc1oi"]
+[ext_resource type="PackedScene" uid="uid://g0873wwrpsrg" path="res://Scenes/Lighting/Lighting.tscn" id="2_8od7v"]
+[ext_resource type="PackedScene" uid="uid://cyrfb2v7boesp" path="res://Scenes/Moth/moth.tscn" id="3_qc4db"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3qbn"]
+size = Vector2(1166, 29)
+
+[node name="Test" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1336.0
+offset_bottom = 981.0
+color = Color(0.38844848, 0.10557877, 0, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(587, 617)
+shape = SubResource("RectangleShape2D_o3qbn")
+
+[node name="Player" parent="." instance=ExtResource("1_lc1oi")]
+position = Vector2(273.99997, 252.99998)
+
+[node name="Lamp" parent="." instance=ExtResource("2_8od7v")]
+position = Vector2(959, 565)
+
+[node name="Moth" parent="." instance=ExtResource("3_qc4db")]
+position = Vector2(890, 389)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
