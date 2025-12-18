@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dke3qtjvucvep"]
 
 [ext_resource type="Script" uid="uid://bp0c8toek36e" path="res://scripts/Player/player.gd" id="1_a3d8c"]
-[ext_resource type="Texture2D" uid="uid://bvxmrrnn46yqj" path="res://assets/evil_fly_idl.png" id="1_uvnfx"]
+[ext_resource type="Texture2D" uid="uid://cubro6g4wu3fk" path="res://assets/evil_fly_idle3.png" id="2_xpcdj"]
 [ext_resource type="Texture2D" uid="uid://c2nodi7ja6llp" path="res://assets/evil_fly_attack.png" id="3_xpcdj"]
 
 [sub_resource type="Animation" id="Animation_mtuoh"]
@@ -107,45 +107,6 @@ tracks/1/keys = {
 "values": [0.0, 6.2831855]
 }
 
-[sub_resource type="Animation" id="Animation_xpcdj"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("idle:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("attack:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("idle:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_dd0ac"]
 resource_name = "attack_old"
 length = 0.8
@@ -198,6 +159,45 @@ tracks/3/keys = {
 "values": [false, true, false]
 }
 
+[sub_resource type="Animation" id="Animation_xpcdj"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("attack:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("idle:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_htcer"]
 _data = {
 &"RESET": SubResource("Animation_mtuoh"),
@@ -223,7 +223,7 @@ libraries = {
 }
 
 [node name="idle" type="Sprite2D" parent="."]
-texture = ExtResource("1_uvnfx")
+texture = ExtResource("2_xpcdj")
 hframes = 10
 
 [node name="attack" type="Sprite2D" parent="."]

@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 		elif index == sayings.size():
 				$anim.play("LAMPLIGHT")
 				index += 1
-		else:
+		elif $anim.assigned_animation != "fade out":
 			$anim.play("fade out")
 			await $anim.animation_finished
 			get_tree().change_scene_to_file("res://Scenes/game.tscn")

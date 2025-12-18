@@ -1,6 +1,6 @@
 extends Node2D
 
-var max_score = 59
+var max_score = 60
 
 func _on_music_finished() -> void:
 	$music.play()

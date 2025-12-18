@@ -4,11 +4,18 @@ const PLAYABLE_SPEED: float = 500
 const JUMP_VEL: float = -1000
 const GRAVITY: float = 40
 const MAX_FALL: float = 1000
-const MAX_JUMPS: int = 2
+const MAX_JUMPS: int = 3
 
-var jumps_remaining: int = 2
+const TEXTURES: Array[CompressedTexture2D] = [preload("res://assets/evil_fly_idle0.png"), preload("res://assets/evil_fly_idle1.png"), preload("res://assets/evil_fly_idle2.png"), preload("res://assets/evil_fly_idle3.png")]
+
+var jumps_remaining: int = 3
 
 var attacking: bool = false
+
+func update_jumps(new_jumps):
+	new_jumps = min(MAX_JUMPS, new_jumps)
+	jumps_remaining = new_jumps
+	$idle.texture = TEXTURES[new_jumps]
 
 func _physics_process(delta):
 	
@@ -28,19 +35,19 @@ func _physics_process(delta):
 	
 	if !(velocity.y >= MAX_FALL):
 		velocity.y += GRAVITY
-
+	
+	if Input.is_action_just_pressed("Jump") and jumps_remaining > 0:
+		$anim.play("idle")
+		jump()
+		update_jumps(jumps_remaining - 1)
+	elif is_on_floor():
+		update_jumps(MAX_JUMPS)
+		$idle.rotation = 0
+		$anim.play("idle")
+	
 	if !attacking: # no animations, jumping, or refilling jumps
-		if Input.is_action_just_pressed("Jump") and jumps_remaining > 0:
-			$anim.play("idle")
-			jump()
-			jumps_remaining -= 1
-			
 		if Input.is_action_just_pressed("attack"):
 			attack()
-		
-		elif is_on_floor():
-			jumps_remaining = MAX_JUMPS
-			$anim.play("idle")
 		elif velocity.y > 0:
 			$anim.stop()
 	
@@ -64,4 +71,4 @@ func _on_attack_zone_body_entered(body: Node2D) -> void:
 			body.lamp_fall("left")
 		else:
 			body.lamp_fall("right")
-		jumps_remaining += 1
+		update_jumps(jumps_remaining +  1)

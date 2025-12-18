@@ -1,7 +1,7 @@
 extends Control
 
 var final_score
-var max_score = 59
+var max_score = 60
 var message
 
 func _ready() -> void:
@@ -34,7 +34,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 
-	if Input.is_action_just_pressed("Jump"):
+	if Input.is_action_just_pressed("Jump") and $anim.assigned_animation != "fade out":
 		Score.moths = 0
 		Score.lamps = 0
 		$anim.play("fade out")
