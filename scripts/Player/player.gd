@@ -48,7 +48,7 @@ func _physics_process(delta):
 	if !attacking: # no animations, jumping, or refilling jumps
 		if Input.is_action_just_pressed("attack"):
 			attack()
-		elif velocity.y > 0:
+		elif velocity.y > 0 and !is_on_floor():
 			$anim.stop()
 	
 	move_and_slide()
